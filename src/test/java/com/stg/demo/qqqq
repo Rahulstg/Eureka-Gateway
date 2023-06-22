@@ -1,0 +1,54 @@
+Introduce about you and project?
+
+Explain about Sonar iq  and cyber flow?
+
+Previous project related question 
+
+Explain  spring security configuration  in your project?
+
+Did you used PatchMapping in your project ? when we should use?
+
+what are the Design pattern used in your project?
+
+Issues in your project.
+
+What is the difference between checked and unchecked exceptions?
+
+Explain internal work flow of  concurrent hashmap?
+
+Can we use local variables in static method?
+
+When will use Optional
+
+Stream concepts(reduce)
+
+Functional Interfaces in java 
+
+Print the 5th max value?
+
+List<List<String>> task2 = Arrays.asList(
+	    Arrays.asList("1", "3", "99", "2", "14", "2"),
+	    Arrays.asList("111", "7", "199", "92", "14", "20"),
+	    Arrays.asList("10", "31", "9", "21", "243", "432"),
+	    Arrays.asList("31", "13", "999", "5", "41", "222"),
+	    Arrays.asList("10", "31", "401", "42", "11", "77")
+	);
+
+Exception handling in spring boot ?
+
+Spring boot annotation ?
+
+When we will use callable statement ?
+
+Join  and alive ?
+
+Do you know about sealed class ?
+
+What is yield?
+
+What is the purpose of @Embeddable
+
+How Microservices communicating ?
+
+Why will use Jacoco ?
+
