@@ -1,0 +1,67 @@
+# Database 1
+spring.datasource.url=jdbc:h2:mem:db1
+spring.datasource.username=sa
+spring.datasource.password=
+
+# Database 2
+spring.datasource.db2.url=jdbc:h2:mem:db2
+spring.datasource.db2.username=sa
+spring.datasource.db2.password=
+
+
+@Configuration
+public class DatabaseConfig {
+
+    @Bean
+    @Primary
+    public DataSource dataSource() {
+        return DataSourceBuilder.create()
+                .url("spring.datasource.url")
+                .username("spring.datasource.username")
+                .password("spring.datasource.password")
+                .build();
+    }
+
+    @Bean(name = "db2DataSource")
+    public DataSource db2DataSource() {
+        return DataSourceBuilder.create()
+                .url("spring.datasource.db2.url")
+                .username("spring.datasource.db2.username")
+                .password("spring.datasource.db2.password")
+                .build();
+    }
+}
+
+
+
+@Configuration
+public class JdbcTemplateConfig {
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+    @Bean(name = "db2JdbcTemplate")
+    public JdbcTemplate db2JdbcTemplate(@Qualifier("db2DataSource") DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+}
+
+
+
+
+@Repository
+public class UserRepository {
+
+    private final JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate db2JdbcTemplate;
+
+    @Autowired
+    public UserRepository(JdbcTemplate jdbcTemplate, @Qualifier("db2JdbcTemplate") JdbcTemplate db2JdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.db2JdbcTemplate = db2JdbcTemplate;
+    }
+
+    // Use the jdbcTemplate and db2JdbcTemplate as needed
+}
