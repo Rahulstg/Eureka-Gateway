@@ -1,0 +1,68 @@
+
+
+
+
+Security config.class
+@configration
+@enablewebsecurity
+
+
+Spring boot from 2.7 deprecated 
+Spring boot latest version 3.0.1
+Create class WebSecurityConfig
+@configration
+@enablewebsecurity
+Before 2.7.x—>web securityconfigureadaptor it deprecated now
+It provide 3 overloaded configure method
+1,configure(authentication manager builder auth) (you can configure many number of users) this for authentication.
+2,configure(HttpSecurity http) -> this for authorisation 
+But now securitycofigureadaptor  You won’t get this class now
+
+
+You need to create the bean  
+Public userdetailsservice ->it came from->org.springframwork.security.core.userdetails 
+Create class WebSecurityConfig
+@configration
+@enablewebsecurity
+@enablemethodsecurity
+@bean 
+Public UserDetailsService userDetailService(){
+// here you defind here
+Userdetails admin=adminuser
+Userdetails promo=prmouser.        //this is for authentication
+ Userdetails ui=user
+}
+
+Encrypt the password
+Use password encoder for encrypt the password
+
+
+For authorisation
+@bean 
+Public securityfilterchain  securityfilterchain(httpsecurity http){
+http.csrf().disable()
+.suthorizehttprequest.requestmacher(“/products/welcome”).permitAll
+
+}
+
+
+
+In rest controller method based will give role
+Preauthorise(hasauthority(‘admin’))
+
+This is for user
+Preauthorise(hasauthority(‘user’))
+
+This is for user
+Preauthorise(hasauthority(‘promo’))
+
+
+
+Password encoder
+Bcryptpasswordencoder
+
+
+
+
+
+
