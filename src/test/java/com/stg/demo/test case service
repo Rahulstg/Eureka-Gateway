@@ -1,0 +1,51 @@
+@Service
+public class ProductService {
+
+	public Double getTotalCost(Integer soupcount, Integer breadcount) {
+
+		Product prd = new Product();
+		prd.setProductname("soup");
+		prd.setUnit("tin");
+		prd.setCost(0.65);
+		return (Double.parseDouble(String.format("%.2f", prd.getCost() * soupcount)) + (breadcount * 0.80)) - 0.40;
+
+	}
+
+	public Double getTotalCostforAppleAndMilk(Integer appleCount, Integer milkCount) {
+		Product prd = new Product();
+		prd.setProductname("apple");
+		prd.setUnit("single");
+		prd.setCost(0.10);
+		return (Double.parseDouble(String.format("%.2f", prd.getCost() * appleCount)) + (milkCount * 1.30));
+
+		// return (Double.parseDouble(String.format("%.2f", prd.getCost() * appleCount))
+		// + (milkCount * 1.30) - discountPercentage / 100);
+	}
+
+	public Double getTotalCostforAppleAndMilkWithDiscount(Integer appleCount, Integer milkCount) {
+		double discountPercentage = 10;
+		Product prd = new Product();
+		prd.setProductname("apple");
+		prd.setUnit("single");
+		prd.setCost(0.10);
+		return (Double.parseDouble(
+				String.format("%.2f", ((prd.getCost() * appleCount) - discountPercentage / 100) + (milkCount * 1.30))));
+
+		// return (Double.parseDouble(String.format("%.2f", prd.getCost() * appleCount))
+		// + (milkCount * 1.30) - discountPercentage / 100);
+	}
+
+	public Double getTotalCostforAppleAndMilkAndSoupWithDiscount(Integer appleCount, Integer breadcount,
+			Integer milkCount) {
+		double discountPercentage = 10;
+		Product prd = new Product();
+		prd.setProductname("apple");
+		prd.setUnit("single");
+		prd.setCost(0.10);
+		return (Double.parseDouble(String.format("%.2f", ((prd.getCost() * appleCount) - discountPercentage / 100)
+				+ (breadcount * 0.80 - 0.40) + (milkCount * 1.30))));
+
+		// return (Double.parseDouble(String.format("%.2f", prd.getCost() * appleCount))
+		// + (milkCount * 1.30) - discountPercentage / 100);
+	}
+}
