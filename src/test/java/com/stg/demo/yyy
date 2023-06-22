@@ -1,0 +1,53 @@
+@RestController
+@RequestMapping("/api/v1")
+public class ProductController {
+	
+	@Autowired
+	ProductService productService;
+	
+	private final MyappConfiration myappConfiration;
+	
+	@Autowired
+	public ProductController(MyappConfiration myappConfiration) {
+	this.myappConfiration=myappConfiration;
+	}
+	 @GetMapping("/publish")
+	    public ResponseEntity<String> getTotalCost(@RequestParam Integer soupcount, Integer breadcount ){
+		 String ttt=myappConfiration.getAppName();
+		 String yyy=myappConfiration.getAppVersion();
+		 System.out.println(ttt +yyy );
+		 double cost =productService.getTotalCost(soupcount,breadcount);
+	        return ResponseEntity.ok("Total cost is"+ cost);
+	    }
+}
+
+
+
+
+@Configuration
+@PropertySource("classpath:application.properties")
+public class MyappConfiration {
+	
+	@Value("${myapp.name}")
+	private String appName;
+	
+	@Value("${myapp.verion}")
+	private String appVersion;
+
+	public String getAppName() {
+		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+
+	public String getAppVersion() {
+		return appVersion;
+	}
+
+	public void setAppVersion(String appVersion) {
+		this.appVersion = appVersion;
+	}
+
+}
