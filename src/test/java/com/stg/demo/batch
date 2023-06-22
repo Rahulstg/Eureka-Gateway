@@ -1,0 +1,43 @@
+Spring batch 
+
+Batch, web,jpa, (h2, devtools) we can use mysql also
+
+App.prop file
+Spring.batch.job.enable=false(if we dint do this spring by default will start the job luncher)
+input=/data/web/users.csv(for read the file from the location)
+
+
+
+Src/main/resource/user.csv (input file)
+Id,name,dept,salary
+101,rahul,001,12000
+102,ranjith,002,13000
+
+
+Create class and package 
+Model(entity, id, class name=user ,constructor ,getter and setter),
+repository(UserRepository and extends jparepo)
+Batch 
+processer.class, implements itemprocessor<user,user>, and override the process method)
+Dbwriter.class implements itemwriter<user>
+controller(restcontroller,loadcontroller.class)
+@autowired j
+Jobluncher jobluncher ->created by spring boot
+@autowired 
+Job job. -> config file from our class
+
+@getmapping void load(){}
+config(Sprinbatchconfig,@configration, Create job )
+@congiration
+@enablebatchprocessing
+Public class Sprinbatchconfig{
+@bean 
+Public Job job(jobbuilderfacotory jobbuilderfacotory){
+Step step=
+jobbuilderfacotory.get(“ETL-LOAD”)
+.incrementer(new runidincreamenter).start(step).build();  }}
+
+
+
+Also we can do timestamp update in database 
+
